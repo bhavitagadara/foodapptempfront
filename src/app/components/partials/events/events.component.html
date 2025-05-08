@@ -1,0 +1,17 @@
+<section id="events" class="events section">
+    <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide event-item d-flex flex-column justify-content-end"
+            *ngFor="let event of events"
+            [style.backgroundImage]="'url(' + event.image + ')'">
+            <h3>{{ event.title }}</h3>
+            <div class="price align-self-start">{{ event.price }}</div>
+            <p class="description">{{ event.description }}</p>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+  
