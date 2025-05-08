@@ -1,0 +1,32 @@
+<section id="chefs" class="chefs section">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>chefs</h2>
+      <p><span>Our</span> <span class="description-title">Professional Chefs</span></p>
+    </div>
+    <!-- End Section Title -->
+  
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-4 d-flex align-items-stretch" *ngFor="let chef of chefs" data-aos="fade-up">
+          <div class="team-member">
+            <div class="member-img">
+              <img [src]="chef.image" class="img-fluid" [alt]="chef.name">
+              <div class="social">
+                <a [href]="chef.socialLinks.twitter"><i class="bi bi-twitter-x"></i></a>
+                <a [href]="chef.socialLinks.facebook"><i class="bi bi-facebook"></i></a>
+                <a [href]="chef.socialLinks.instagram"><i class="bi bi-instagram"></i></a>
+                <a [href]="chef.socialLinks.linkedin"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4>{{ chef.name }}</h4>
+              <span>{{ chef.role }}</span>
+              <p>{{ chef.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
