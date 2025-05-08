@@ -1,0 +1,68 @@
+
+<header>
+  <app-header></app-header>
+</header>
+
+<div class="container">
+  <h2>Order History</h2>
+
+  <div *ngIf="orders.length > 0">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Date</th>
+          <th>Items</th>
+          <th>Total Amount</th>
+          <th>Payment Status</th>
+          <!-- <th>Actions</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order._id }}</td>
+          <td>{{ order.createdAt | date: 'medium' }}</td> 
+          <td>
+            <ul>
+              <li *ngFor="let item of order.items">
+                {{ item.name }} - {{ item.price }}
+                <span *ngIf="!item.isSubscription"> (x{{ item.quantity }})</span>
+              </li>
+            </ul>
+          </td>
+          <td>${{ order.totalAmount }}</td>
+          <td [ngClass]="{
+            'text-danger': order.paymentStatus === 'refunded',
+            'text-success': order.paymentStatus === 'paid'
+          }">
+          {{ order.paymentStatus }}
+      
+        <!-- Show cancel subscription button only if it's a subscription and active -->
+          <button 
+            *ngIf="order.isSubscription && order.paymentStatus === 'paid'&& isOrderFromToday(order.createdAt)" 
+            (click)="cancelSubscription(order._id)" 
+            class="btn btn-danger btn-sm">
+            Cancel Subscription
+          </button>
+      
+        <!-- Show cancel order button only for non-subscription orders made today -->
+          <button 
+            *ngIf="!order.isSubscription && order.paymentStatus === 'paid' && isOrderFromToday(order.createdAt)" 
+            (click)="cancelOrder(order._id)" 
+            class="btn btn-warning btn-sm">
+            Cancel Order
+          </button>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="orders.length === 0">
+    <p>No order history found.</p>
+  </div>
+</div>
+
+<footer>
+  <app-footer></app-footer>
+</footer>
