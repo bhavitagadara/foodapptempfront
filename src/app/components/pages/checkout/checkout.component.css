@@ -1,0 +1,114 @@
+/* Container styling */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Checkout Title */
+  h2 {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Table styling */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+  }
+  
+  .table td img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+  }
+  
+  /* Total price section */
+  .total-price {
+    text-align: right;
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  
+  /* Form Styling */
+  form {
+    margin-top: 20px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  select.form-control {
+    cursor: pointer;
+  }
+  
+  /* Place Order Button */
+  .btn-success {
+    display: block;
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    font-size: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838;
+  }
+  
+  /* Empty cart message */
+  .empty-cart {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+    margin-top: 20px;
+  }
+  
+  .empty-cart a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .empty-cart a:hover {
+    text-decoration: underline;
+  }
+  
