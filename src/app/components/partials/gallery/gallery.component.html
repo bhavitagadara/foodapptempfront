@@ -1,0 +1,20 @@
+<section id="gallery" class="gallery section light-background">
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Gallery</h2>
+      <p><span>Check</span> <span class="description-title">Our Gallery</span></p>
+    </div>
+  
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper">
+        <div class="swiper-wrapper align-items-center">
+          <div class="swiper-slide" *ngFor="let img of images">
+            <a class="glightbox" data-gallery="images-gallery" [href]="img">
+              <img [src]="img" class="img-fluid" alt="Gallery Image">
+            </a>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+  
