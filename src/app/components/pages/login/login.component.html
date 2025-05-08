@@ -1,0 +1,22 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <form (ngSubmit)="onLogin()">
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" [(ngModel)]="email" name="email" required />
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" [(ngModel)]="password" name="password" required />
+    </div>
+    <button type="submit">Login</button>
+  </form>
+  
+  <h3>OR</h3>  
+  <!-- Google Sign-In Button -->
+  <div id="g_id_onload"
+      data-client_id="1069643438794-p8f7rgjgsgkgale7ntjv2fvrdu6fekad.apps.googleusercontent.com"
+      data-callback="handleCredentialResponse">
+  </div>
+  <div class="g_id_signin" data-type="standard"></div>
+</div>  
