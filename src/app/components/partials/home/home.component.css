@@ -1,0 +1,12 @@
+.hero {
+    padding: 60px 0;
+    text-align: center;
+  }
+  .btn-get-started {
+    background-color: #ff6600;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  
