@@ -1,0 +1,26 @@
+<header><app-header></app-header></header>
+<div class="container">
+    <h2>Payment Page</h2>
+    
+    <h4>Your Order:</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Food Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order.items">
+          <td>{{ item.name }}</td>
+          <td>{{ item.price }}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h4>Total Price: ${{ order.totalAmount }}</h4>
+    
+    <button (click)="payNow()" class="btn btn-primary">Pay</button>
+  </div>
+  
+  <footer><app-footer></app-footer></footer>
