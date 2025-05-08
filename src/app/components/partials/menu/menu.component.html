@@ -1,0 +1,21 @@
+   <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+    <div class="tab-pane fade" *ngFor="let category of menuCategories; let i = index"
+         [class.active]="i === 0" [class.show]="i === 0" [attr.id]="category.id">
+      <div class="tab-header text-center">
+        <p>Menu</p>
+        <h3>{{ category.title }}</h3>
+      </div>
+  
+      <div class="row gy-5">
+        <div class="col-lg-4 menu-item" *ngFor="let item of category.items">
+          <a [routerLink]="['/food', slugify(item.name)]">
+            <img [src]="item.image" class="menu-img img-fluid" alt="{{ item.name }}">
+          </a>
+          <h4>{{ item.name }}</h4>
+          <p class="ingredients">{{ item.ingredients }}</p>
+          <p class="price">{{ item.price }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
