@@ -1,0 +1,23 @@
+<header><app-header></app-header></header>
+
+<div class="container food-details-container">
+
+  <!-- Display Food Details -->
+  <div *ngIf="food" class="food-details-grid">
+    <img [src]="food.image" class="img-fluid food-image" alt="{{ food.name }}">
+    <div class="food-info">
+      <h3>{{ food.name }}</h3>
+      <p><strong>Ingredients:</strong> {{ food.ingredients }}</p>
+      <p><strong>Price:</strong> {{ food.price }}</p>
+
+      <button class="btn btn-primary" (click)="addToCart()">Add to Cart</button>
+      <app-subscription></app-subscription>
+    </div>
+  </div>
+
+  <div *ngIf="!food">
+    <p>Food item not found.</p>
+  </div>
+</div>
+
+<footer><app-footer></app-footer></footer>
