@@ -1,0 +1,38 @@
+.book-a-table {
+    padding: 60px 0;
+  }
+  
+  .reservation-img {
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+  }
+  
+  .reservation-form-bg {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 5px;
+  }
+  
+  .form-control {
+    border-radius: 5px;
+  }
+  
+  .text-danger {
+    font-size: 12px;
+  }
+  
+  button {
+    background: #ff0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  button:hover {
+    background: #9e2102;
+  }
+  
