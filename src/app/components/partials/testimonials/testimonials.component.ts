@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component } from '@angular/core';
 
 declare var Swiper: any;
@@ -38,27 +38,54 @@ export class TestimonialsComponent implements AfterViewInit {
     }
   ];
 
+  // ngAfterViewInit(): void {
+  //   const swiperOptions: any = {
+  //     speed: 600,
+  //     autoplay: {
+  //       delay: 5000
+  //     },
+  //     slidesPerView: 1,
+  //     slidesPerGroup: 1,
+  //     pagination: {
+  //       el: '.swiper-pagination',
+  //       type: 'bullets',
+  //       clickable: true
+  //     }
+  //   };
+
+  //   // Enable loop only if there are enough slides
+  //   if (this.testimonials.length > 1) {
+  //     swiperOptions.loop = true;
+  //   }
+
+  //   new Swiper('.mySwiper', swiperOptions);
+  // }
+
   ngAfterViewInit(): void {
-    const swiperOptions: any = {
-      speed: 600,
-      autoplay: {
-        delay: 5000
-      },
-      slidesPerView: 1,
-      slidesPerGroup: 1,
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-        clickable: true
+    if (isPlatformBrowser(this.platformId)) {
+      const swiperOptions: any = {
+        speed: 600,
+        autoplay: {
+          delay: 5000
+        },
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        pagination: {
+          el: '.swiper-pagination',
+          type: 'bullets',
+          clickable: true
+        }
+      };
+
+      // Enable loop only if there are enough slides
+      if (this.testimonials.length > 1) {
+        swiperOptions.loop = true;
       }
-    };
 
-    // Enable loop only if there are enough slides
-    if (this.testimonials.length > 1) {
-      swiperOptions.loop = true;
+      new Swiper('.mySwiper', swiperOptions);
     }
-
-    new Swiper('.mySwiper', swiperOptions);
   }
-
+  platformId(platformId: any) {
+    throw new Error('Method not implemented.');
+  }
 }

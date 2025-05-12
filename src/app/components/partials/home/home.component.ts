@@ -1,5 +1,6 @@
-import { AfterViewInit, Component } from '@angular/core';
-import AOS from 'aos'; 
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +9,16 @@ import AOS from 'aos';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent  implements AfterViewInit {
+export class HomeComponent implements AfterViewInit {
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+
   ngAfterViewInit() {
-    AOS.init();  // ✅ Initialize AOS after the view loads
+    if (isPlatformBrowser(this.platformId)) {
+      // Only initialize AOS on the browser side
+      import('aos').then(AOS => {
+        AOS.init();
+      });
+    }
   }
 }

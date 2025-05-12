@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component ,AfterViewInit } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component ,AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
 
 declare var Swiper: any; 
 
@@ -39,28 +39,57 @@ export class EventsComponent implements AfterViewInit {
     }
   ];
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  // ngAfterViewInit(): void {
+  //   new Swiper('.swiper', {
+  //     loop: true,
+  //     speed: 600,
+  //     autoplay: {
+  //       delay: 5000
+  //     },
+  //     slidesPerView: 'auto',
+  //     pagination: {
+  //       el: '.swiper-pagination',
+  //       clickable: true
+  //     },
+  //     breakpoints: {
+  //       320: {
+  //         slidesPerView: 1,
+  //         spaceBetween: 40
+  //       },
+  //       1200: {
+  //         slidesPerView: 3,
+  //         spaceBetween: 1
+  //       }
+  //     }
+  //   });
+  // }
   ngAfterViewInit(): void {
-    new Swiper('.swiper', {
-      loop: true,
-      speed: 600,
-      autoplay: {
-        delay: 5000
-      },
-      slidesPerView: 'auto',
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      },
-      breakpoints: {
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 40
+    // Only run in the browser
+    if (isPlatformBrowser(this.platformId)) {
+      new Swiper('.swiper', {
+        loop: true,
+        speed: 600,
+        autoplay: {
+          delay: 5000
         },
-        1200: {
-          slidesPerView: 3,
-          spaceBetween: 1
+        slidesPerView: 'auto',
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        breakpoints: {
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 40
+          },
+          1200: {
+            slidesPerView: 3,
+            spaceBetween: 1
+          }
         }
-      }
-    });
+      });
+    }
   }
 }

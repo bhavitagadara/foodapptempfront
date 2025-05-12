@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -6,20 +7,41 @@ import { Injectable } from '@angular/core';
 export class CartService {
   private cart: any[] = [];
 
-  constructor() {
-    this.loadCart(); // Load cart from localStorage when service initializes
+  // constructor() {
+  //   this.loadCart(); // Load cart from localStorage when service initializes
+  // }
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadCart(); // Only run in browser
+    }
   }
 
   private saveCart() {
-    localStorage.setItem('cart', JSON.stringify(this.cart));
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+    }
   }
 
   private loadCart() {
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-      this.cart = JSON.parse(storedCart);
+    if (isPlatformBrowser(this.platformId)) {
+      const storedCart = localStorage.getItem('cart');
+      if (storedCart) {
+        this.cart = JSON.parse(storedCart);
+      }
     }
   }
+
+  // private saveCart() {
+  //   localStorage.setItem('cart', JSON.stringify(this.cart));
+  // }
+
+  // private loadCart() {
+  //   const storedCart = localStorage.getItem('cart');
+  //   if (storedCart) {
+  //     this.cart = JSON.parse(storedCart);
+  //   }
+  // }
 
   getCart() {
     return [...this.cart]; // Return a copy to prevent accidental modifications

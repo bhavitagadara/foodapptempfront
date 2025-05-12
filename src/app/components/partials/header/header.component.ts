@@ -1,11 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+
+declare let AOS: any;
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule,CommonModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -34,7 +36,7 @@ import { Router, RouterModule } from '@angular/router';
 //       window.location.reload(); // Force reload to refresh components
 //     });
 //   }
-  
+
 //   navigateToRegister() {
 //     this.router.navigate(['/register']);
 //   }
@@ -43,22 +45,54 @@ import { Router, RouterModule } from '@angular/router';
 //     this.router.navigate(['/login']);
 //   }
 
-  
+
 // }
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit,AfterViewInit {
   isMenuOpen = false;
   userName: string | null = null;
+  isBrowser!: boolean;
 
-  constructor(private router: Router) {}
+  // constructor(private router: Router) {}
 
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
   ngOnInit() {
-    this.loadUser();
+    if (this.isBrowser) {
+      this.loadUser(); // Only load the user from localStorage in the browser
+    }
+  }
+
+  
+  ngAfterViewInit() {
+    // Only initialize AOS in the browser after the view is initialized
+    if (this.isBrowser) {
+      this.loadAOS(); // Ensure AOS is only initialized in the browser
+    }
   }
 
   loadUser() {
-    const user = localStorage.getItem('user');
-    if (user) {
-      this.userName = JSON.parse(user).name; // Get the user's name
+    if (this.isBrowser) {
+      const user = localStorage.getItem('user');
+      if (user) {
+        this.userName = JSON.parse(user).name; // Get the user's name
+      }
+    }
+  }
+
+  loadAOS() {
+    if (this.isBrowser) {
+      import('aos').then((AOSModule) => {
+        AOSModule.default.init({
+          duration: 1200,
+          easing: 'ease-in-out',
+        });
+      }).catch((error) => {
+        console.error('Failed to load AOS:', error);
+      });
     }
   }
 
