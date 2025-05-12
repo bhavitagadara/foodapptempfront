@@ -1,3 +1,9 @@
 [build]
-  command = "ng build --configuration production"
-  publish = "dist/foodapptemp"
+    base = "foodapptempfront"
+    command = "npm run build:prod"  # Ensure this matches the build script you're using
+    publish = "dist/browser"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
