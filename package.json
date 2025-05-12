@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "prerender": "ng run foodapptemp:prerender",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:foodapptemp": "node dist/foodapptemp/server/server.mjs"
